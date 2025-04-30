@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Excel Basic Formulas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .formula {
+      background: white;
+      padding: 15px;
+      margin: 10px auto;
+      border-left: 5px solid red;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      max-width: 600px;
+    }
+    .formula h3 {
+      margin: 0 0 10px;
+      color: #2980b9;
+    }
+    .formula p {
+      margin: 0;
+    }
+    .dis{
+       padding:20px;
+        font-weight:800;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Excel Basic Formulas</h1>
+
+<div class="formula">
+  <h3>IF with AND</h3>
+  <p><code>=IF(AND(A1>50, B1>50), "Pass", "Fail")</code></p>
+  <p class="dis">Jab dono conditions true ho tab "Pass" dikhata hai, warna "Fail". Use hota hai jab aapko multiple shartein check karni ho.</p>
+</div>
+
+<div class="formula">
+  <h3>IF with OR</h3>
+  <p><code>=IF(OR(A1>50, B1>50), "Pass", "Fail")</code></p>
+  <p class="dis">Kisi bhi ek condition true ho to "Pass", warna "Fail". Use hota hai jab ek bhi condition sahi ho tab result chahiye.</p>
+</div>
+
+<div class="formula">
+  <h3>Nested IF</h3>
+  <p><code>=IF(A1>=90, "A", IF(A1>=80, "B", IF(A1>=70, "C", "Fail")))</code></p>
+   <p class="dis">Multiple conditions ke basis par result dene ke liye. Example: Grades dene ke liye.</p>
+</div>
+
+<div class="formula">
+  <h3>Concatenate</h3>
+  <p><code>=CONCATENATE(A1, " ", B1)</code></p>
+  
+   <p class="dis">Do ya zyada text values ko jodne ke liye. Example: First name + Last name.</p>
+</div>
+
+<div class="formula">
+  <h3>LEFT</h3>
+  <p><code>=LEFT(A1, 3)</code></p>
+   <p class="dis">
+      
+    Cell ke starting ke 3 characters return karta hai. Example: Code ka prefix nikalna.</p>
+</div>
+
+<div class="formula">
+  <h3>RIGHT</h3>
+  <p><code>=RIGHT(A1, 4)</code></p>
+   <p class="dis">Cell ke last 4 characters return karta hai. Example: File extension ya last digits.</p>
+</div>
+
+<div class="formula">
+  <h3>MID</h3>
+  <p><code>=MID(A1, 2, 3)</code></p>
+   <p class="dis">2nd character se start karke 3 characters extract karta hai. Use hota hai string ke beech ka part nikalne me.</p>
+</div>
+
+<div class="formula">
+  <h3>LEN</h3>
+  <p><code>=LEN(A1)</code></p>
+   <p class="dis">Cell me total characters count karta hai. Use hota hai data length verify karne me.</p>
+</div>
+
+<div class="formula">
+  <h3>TRIM</h3>
+  <p><code>=TRIM(A1)</code></p>
+   <p class="dis">Extra spaces hata deta hai. Useful jab copy-paste ki wajah se extra spaces aa jaate hain.</p>
+</div>
+
+<div class="formula">
+  <h3>TODAY</h3>
+  <p><code>=TODAY()</code></p>
+   <p class="dis">Aaj ki tareekh return karta hai. Date tracking ke liye useful hai.</p>
+</div>
+
+<div class="formula">
+  <h3>NOW</h3>
+  <p><code>=NOW()</code></p>
+   <p class="dis">Aaj ki date aur time return karta hai. Real-time data tracking ke liye use hota hai.</p>
+</div>
+
+<div class="formula">
+  <h3>VLOOKUP</h3>
+  <p><code>=VLOOKUP(101, A2:C10, 2, FALSE)</code></p>
+   <p class="dis">101 ID dhoondhkar uska matching value doosre column se laata hai. Lookup tables me use hota hai.</p>
+</div>
+
+<div class="formula">
+  <h3>HLOOKUP</h3>
+  <p><code>=HLOOKUP("Maths", A1:E3, 2, FALSE)</code></p>
+   <p class="dis">Horizontal rows me value search karta hai. Tabular data me row-wise search ke liye.</p>
+</div>
+
+<div class="formula">
+  <h3>COUNTIF</h3>
+  <p><code>=COUNTIF(A1:A10, ">50")</code></p>
+   <p class="dis">Jo values 50 se badi hain unka count karta hai. Conditions ke basis par counting ke liye use hota hai.</p>
+</div>
+
+<div class="formula">
+  <h3>SUMIF</h3>
+  <p><code>=SUMIF(A1:A10, ">50")</code></p>
+   <p class="dis">Sirf unhi values ka sum karega jo condition (50 se badi) fulfill karti hain.</p>
+</div>
+
+<div class="formula">
+  <h3>ROUND</h3>
+  <p><code>=ROUND(A1, 2)</code></p>
+   <p class="dis">Value ko 2 decimal places tak round karta hai. Financial calculations me use hota hai.</p>
+</div>
+
+<div class="formula">
+  <h3>ROUNDUP</h3>
+  <p><code>=ROUNDUP(A1, 0)</code></p>
+   <p class="dis">Value ko upar ki taraf round karta hai. Use hota hai jab hamesha bada number chahiye ho.</p>
+</div>
+
+<div class="formula">
+  <h3>ROUNDDOWN</h3>
+  <p><code>=ROUNDDOWN(A1, 0)</code></p>
+   <p class="dis">Value ko neeche ki taraf round karta hai. Use hota hai jab hamesha chhota number chahiye ho.</p>
+</div>
+
+<div class="formula">
+  <h3>COUNTA</h3>
+  <p><code>=COUNTA(A1:A10)</code></p>
+   <p class="dis">Non-empty cells ko count karta hai. Jab aapko data-entry cells ginni ho.</p>
+</div>
+
+<div class="formula">
+  <h3>COUNTBLANK</h3>
+  <p><code>=COUNTBLANK(A1:A10)</code></p>
+   <p class="dis">Khaali cells ko count karta hai. Use hota hai missing entries track karne ke liye.</p>
+</div>
+
+<div class="formula">
+  <h3>IFERROR</h3>
+  <p><code>=IFERROR(A1/B1, "Error")</code></p>
+   <p class="dis">Agar error aaye to default message ya value show karta hai. Use hota hai safe calculation ke liye.</p>
+</div>
+
+<div class="formula">
+  <h3>ISNUMBER</h3>
+  <p><code>=ISNUMBER(A1)</code></p>
+   <p class="dis">Dekhne ke liye ki cell me number hai ya nahi (TRUE/FALSE return karta hai).</p>
+</div>
+
+<div class="formula">
+  <h3>ISTEXT</h3>
+  <p><code>=ISTEXT(A1)</code></p>
+   <p class="dis">Check karta hai ki value text hai ya nahi.</p>
+</div>
+
+<div class="formula">
+  <h3>UPPER</h3>
+  <p><code>=UPPER(A1)</code></p>
+   <p class="dis">Text ko uppercase (capital) me convert karta hai.</p>
+</div>
+
+<div class="formula">
+  <h3>LOWER</h3>
+  <p><code>=LOWER(A1)</code></p>
+   <p class="dis">Text ko lowercase me convert karta hai.</p>
+</div>
+
+<div class="formula">
+  <h3>PROPER</h3>
+  <p><code>=PROPER(A1)</code></p>
+   <p class="dis">Text ke har word ka first letter capital banata hai.</p>
+</div>
+
+<div class="formula">
+  <h3>REPT</h3>
+  <p><code>=REPT("*", 5)</code></p>
+   <p class="dis">Ek character ya text ko repeat karta hai given number of times.</p>
+</div>
+
+<div class="formula">
+  <h3>SUBSTITUTE</h3>
+  <p><code>=SUBSTITUTE(A1, "old", "new")</code></p>
+   <p class="dis">Text me kisi word ya character ko replace karta hai.</p>
+</div>
+
+<div class="formula">
+  <h3>TEXT</h3>
+  <p><code>=TEXT(A1, "dd/mm/yyyy")</code></p>
+   <p class="dis">Date ya number ko specific format me convert karta hai.</p>
+</div>
+
+<div class="formula">
+  <h3>INT</h3>
+  <p><code>=INT(A1)</code></p>
+   <p class="dis">Number ka integer part return karta hai (decimal hata kar).</p>
+</div>
+
+<div class="formula">
+  <h3>MOD</h3>
+  <p><code>=MOD(A1, B1)</code></p>
+   <p class="dis">Division ke baad remainder return karta hai.</p>
+</div>
+
+<div class="formula">
+  <h3>ABS</h3>
+  <p><code>=ABS(A1)</code></p>
+   <p class="dis">Number ka absolute value return karta hai (negative ko positive banata hai).</p>
+</div>
+
+<div class="formula">
+  <h3>RAND</h3>
+  <p><code>=RAND()</code></p>
+   <p class="dis">0 aur 1 ke beech random number deta hai. Simulation ke liye use hota hai.</p>
+</div>
+
+<div class="formula">
+  <h3>RANDBETWEEN</h3>
+  <p><code>=RANDBETWEEN(1, 100)</code></p>
+   <p class="dis">1 se 100 ke beech random number deta hai.</p>
+</div>
+
+<div class="formula">
+  <h3>DATE</h3>
+  <p><code>=DATE(2025, 4, 30)</code></p>
+   <p class="dis">Year, month aur day se date banata hai.</p>
+</div>
+
+<div class="formula">
+  <h3>YEAR</h3>
+  <p><code>=YEAR(A1)</code></p>
+   <p class="dis">Date se year extract karta hai.</p>
+</div>
+
+<div class="formula">
+  <h3>MONTH</h3>
+  <p><code>=MONTH(A1)</code></p>
+   <p class="dis">Date se month extract karta hai.</p>
+</div>
+
+<div class="formula">
+  <h3>DAY</h3>
+  <p><code>=DAY(A1)</code></p>
+   <p class="dis">Date se day extract karta hai.</p>
+</div>
+
+<div class="formula">
+  <h3>NOW with Text</h3>
+  <p><code>=TEXT(NOW(), "hh:mm:ss AM/PM")</code></p>
+   <p class="dis">Current time ko formatted text me dikhata hai.</p>
+</div>
+
+<div class="formula">
+  <h3>DAYS</h3>
+  <p><code>=DAYS(A2, A1)</code></p>
+   <p class="dis">Do dates ke beech kitne din ka gap hai wo batata hai.</p>
+</div>
+</body>
+</html>
