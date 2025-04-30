@@ -330,6 +330,13 @@ span {
   <button onclick="selectImageUpload()" class="btns">Image Upload</button>
   <button onclick="closeAnswerOptions()" style="margin-left: 10px; background: red; color: white;">Close</button>
 </div>
+
+<script>
+    function showComingSoon() {
+  localStorage.clear();
+  window.location.href = "Formula.html";
+}
+</script>
 <script>
   // Back4App Initialization
   Parse.initialize("qy8z2SCM8r09qpMunKUCIx4I4OsGMII53b9buurv", "7qOd9JbeR2M6zXoW9qM5gDMj1o5Heam4Ul2fEp2T");
@@ -548,16 +555,21 @@ loadQuestions();
       btn.innerText = "☀";
     }
   }
-  
   function showComingSoon() {
   Swal.fire({
-    title: 'Coming Soon!',
-    text: 'New features will be added shortly.',
+    title: 'Redirecting...',
+    text: 'You will be redirected to Formula page shortly.',
     icon: 'info',
     confirmButtonText: 'OK',
     confirmButtonColor: '#e74c3c'
   });
+
+  // 3 seconds (3000 milliseconds) baad redirect
+  setTimeout(function () {
+    window.location.href = 'Formula.html';
+  }, 3000);
 }
+  
 
  function closeAnswerOptions() {
     document.getElementById('answerOptions').style.display = 'none';
