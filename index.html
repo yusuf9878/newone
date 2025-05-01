@@ -415,27 +415,31 @@ loadQuestions();
     container.innerHTML = "";
 
     results.forEach((q, index) => {
-      const status = q.get("status");
-      let statusText = "";
+  const status = q.get("status");
+  let statusText = "";
+  let correctAnswerText = "";
 
-      if (status === "approved") {
-        statusText = '<span style="color: green; font-weight:600;">Approved</span>';
-      } else if (status === "rejected") {
-        statusText = '<span style="color: #ff000a; font-weight:600;">Rejected</span>';
-      } else if (status === "answered") {
-        statusText = '<span style="color: orange; font-weight:900;">Processing...</span>';
-      } else {
-        statusText = `<button onclick="showAnswerOptions('${q.id}')">Submit Answer</button>`;
-      }
+  if (status === "approved") {
+    statusText = '<span style="color: green; font-weight:600;">Approved</span>';
+  } else if (status === "rejected") {
+    statusText = '<span style="color: #ff000a; font-weight:600;">Rejected</span>';
+    const correctAnswer = q.get("correctAnswer"); // Fetch correct answer
+    correctAnswerText = `<br><span style="color: #3498db;">Correct Answer: ${correctAnswer}</span>`; // Display correct answer
+  } else if (status === "answered") {
+    statusText = '<span style="color: orange; font-weight:900;">Processing...</span>';
+  } else {
+    statusText = `<button onclick="showAnswerOptions('${q.id}')">Submit Answer</button>`;
+  }
 
-      const div = document.createElement("div");
-      div.className = "question";
-      div.innerHTML = `
-        <b>Q${index + 1}:</b> ${q.get("questionText")}<br>
-        ${statusText}
-      `;
-      container.appendChild(div);
-    });
+  const div = document.createElement("div");
+  div.className = "question";
+  div.innerHTML = `
+    <b>Q${index + 1}:</b> ${q.get("questionText")}<br>
+    ${statusText}
+    ${correctAnswerText}  <!-- Display correct answer if rejected -->
+  `;
+  container.appendChild(div);
+});
   }
 
   // Display answer options (text/image upload)
