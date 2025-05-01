@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Excel MCQ Quiz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f8f9fa, #e2e6ea);
+      margin: 0;
+      padding: 0;
+    }
+    .quiz-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 30px;
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+    .score {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: right;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+    .question {
+      border: 1px solid #d1d1d1;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    .question h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: normal;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+      background: #f1f1f1;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    label:hover {
+      background: #ddd;
+    }
+    .correct {
+      color: #28a745;
+      font-weight: bold;
+    }
+    .wrong {
+      color: #dc3545;
+      font-weight: bold;
+    }
+    .result-symbol {
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    button {
+      padding: 10px 25px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 15px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .question input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="quiz-container">
+  <div class="score" id="scoreDisplay">Score: 0/100</div>
+  <h1>Excel MCQ Quiz</h1>
+
+  <!-- Questions -->
+  <div class="question" data-answer="=">
+    <h3>1. Excel me formula kis sign se start hota hai?</h3>
+    <label><input type="radio" name="q1" value="*"> * </label>
+    <label><input type="radio" name="q1" value="#"> # </label>
+    <label><input type="radio" name="q1" value="="> = </label>
+    <label><input type="radio" name="q1" value="$"> $ </label>
+    <button onclick="checkAnswer(this)">Submit</button>
+  </div>
+
+  <div class="question" data-answer="Value add karne ke liye">
+    <h3>2. SUM function ka use kis liye hota hai?</h3>
+    <label><input type="radio" name="q2" value="Value subtract karne ke liye"> Subtract</label>
+    <label><input type="radio" name="q2" value="Value add karne ke liye"> Add</label>
+    <label><input type="radio" name="q2" value="Value divide karne ke liye"> Divide</label>
+    <label><input type="radio" name="q2" value="Value sort karne ke liye"> Sort</label>
+    <button onclick="checkAnswer(this)">Submit</button>
+  </div>
+
+  <div class="question" data-answer="=AVERAGE(A1:A5)">
+    <h3>3. 5 cells ka average nikalne ke liye kaunsa formula sahi hai?</h3>
+    <label><input type="radio" name="q3" value="=MEAN(A1:A5)"> =MEAN(A1:A5)</label>
+    <label><input type="radio" name="q3" value="=AVERAGE(A1:A5)"> =AVERAGE(A1:A5)</label>
+    <label><input type="radio" name="q3" value="=AVG(A1:A5)"> =AVG(A1:A5)</label>
+    <label><input type="radio" name="q3" value="=SUM(A1:A5)"> =SUM(A1:A5)</label>
+    <button onclick="checkAnswer(this)">Submit</button>
+  </div>
+
+  <div class="question" data-answer="=IF(A1>50, &quot;Pass&quot;, &quot;Fail&quot;)">
+    <h3>4. IF function ka example kaunsa hai?</h3>
+    <label><input type="radio" name="q4" value="=IF(A1>50, &quot;Pass&quot;, &quot;Fail&quot;)"> =IF(A1&gt;50, "Pass", "Fail")</label>
+    <label><input type="radio" name="q4" value="=A1+A2"> =A1+A2</label>
+    <label><input type="radio" name="q4" value="=SUM(A1:A5)"> =SUM(A1:A5)</label>
+    <label><input type="radio" name="q4" value="=COUNT(A1:A5)"> =COUNT(A1:A5)</label>
+    <button onclick="checkAnswer(this)">Submit</button>
+  </div>
+
+  <div class="question" data-answer="Text">
+    <h3>5. Excel me A1 cell me "Hello" likhne par kis type ka data hoga?</h3>
+    <label><input type="radio" name="q5" value="Number"> Number</label>
+    <label><input type="radio" name="q5" value="Formula"> Formula</label>
+    <label><input type="radio" name="q5" value="Date"> Date</label>
+    <label><input type="radio" name="q5" value="Text"> Text</label>
+    <button onclick="checkAnswer(this)">Submit</button>
+  </div>
+
+  <div class="question" data-answer="=MAX(A1:A5)">
+    <h3>6. Range me highest value ke liye kaunsa formula use hoga?</h3>
+    <label><input type="radio" name="q6" value="=MIN(A1:A5)"> =MIN(A1:A5)</label>
+    <label><input type="radio" name="q6" value="=AVERAGE(A1:A5)"> =AVERAGE(A1:A5)</label>
+    <label><input type="radio" name="q6" value="=MAX(A1:A5)"> =MAX(A1:A5)</label>
+    <label><input type="radio" name="q6" value="=COUNT(A1:A5)"> =COUNT(A1:A5)</label>
+    <button onclick="checkAnswer(this)">Submit</button>
+  </div>
+
+  <div class="question" data-answer="=TODAY()">
+    <h3>7. Aaj ki date dikhane ke liye kaunsa formula sahi hai?</h3>
+    <label><input type="radio" name="q7" value="=DATE()"> =DATE()</label>
+    <label><input type="radio" name="q7" value="=NOW()"> =NOW()</label>
+    <label><input type="radio" name="q7" value="=TODAY()"> =TODAY()</label>
+    <label><input type="radio" name="q7" value="=CURRENTDATE()"> =CURRENTDATE()</label>
+    <button onclick="checkAnswer(this)">Submit</button>
+  </div>
+
+  <div class="question" data-answer="=COUNT(A1:A10)">
+    <h3>8. Range me kitne numbers hai yeh jaanne ke liye?</h3>
+    <label><input type="radio" name="q8" value="=SUM(A1:A10)"> =SUM(A1:A10)</label>
+    <label><input type="radio" name="q8" value="=MAX(A1:A10)"> =MAX(A1:A10)</label>
+    <label><input type="radio" name="q8" value="=COUNT(A1:A10)"> =COUNT(A1:A10)</label>
+    <label><input type="radio" name="q8" value="=TEXT(A1:A10)"> =TEXT(A1:A10)</label>
+    <button onclick="checkAnswer(this)">Submit</button>
+  </div>
+
+  <div class="question" data-answer="Ctrl + C">
+    <h3>9. Copy karne ka shortcut kya hai?</h3>
+    <label><input type="radio" name="q9" value="Ctrl + V"> Ctrl + V</label>
+    <label><input type="radio" name="q9" value="Ctrl + X"> Ctrl + X</label>
+    <label><input type="radio" name="q9" value="Ctrl + Z"> Ctrl + Z</label>
+    <label><input type="radio" name="q9" value="Ctrl + C"> Ctrl + C</label>
+    <button onclick="checkAnswer(this)">Submit</button>
+  </div>
+
+  <div class="question" data-answer="Sheet">
+    <h3>10. Excel ke har alag-alag page ko kya kehte hain?</h3>
+    <label><input type="radio" name="q10" value="Cell"> Cell</label>
+    <label><input type="radio" name="q10" value="Table"> Table</label>
+    <label><input type="radio" name="q10" value="Sheet"> Sheet</label>
+    <label><input type="radio" name="q10" value="Row"> Row</label>
+    <button onclick="checkAnswer(this)">Submit</button>
+  </div>
+
+</div>
+
+<script>
+let score = 0;
+const scoreDisplay = document.getElementById('scoreDisplay');
+
+function checkAnswer(button) {
+  const question = button.closest('.question');
+  const correctAnswer = question.getAttribute('data-answer');
+  const options = question.querySelectorAll('label');
+
+  let isCorrect = false;
+
+  options.forEach(option => {
+    const input = option.querySelector('input');
+    const selected = input.checked;
+    const value = input.value;
+    const result = document.createElement('span');
+    result.className = 'result-symbol';
+
+    if (value === correctAnswer) {
+      result.textContent = '✓';
+      result.classList.add('correct');
+      if (selected) isCorrect = true;
+    } else if (selected) {
+      result.textContent = '×';
+      result.classList.add('wrong');
+    }
+
+    if (value === correctAnswer || selected) {
+      if (!option.querySelector('.result-symbol')) {
+        option.appendChild(result);
+      }
+    }
+
+    input.disabled = true;
+  });
+
+  if (isCorrect) {
+    score += 10;
+    scoreDisplay.textContent = `Score: ${score}/100`;
+  }
+
+  button.disabled = true;
+}
+</script>
+
+</body>
+</html>
