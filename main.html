@@ -293,6 +293,17 @@ body {
   </div>
 </div>
 
+<!-- Modal for input -->
+<div id="modalOverlay" style="display: none; position: fixed; top: 0; left: 0; 
+  width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
+  <div style="background: white; padding: 20px; border-radius: 10px; width: 300px;">
+    <h3 id="modalTitle"></h3>
+    <input id="modalInput" type="text" placeholder="Type here..." style="width: 100%; padding: 8px;"><br><br>
+    <button onclick="submitModalInput()">Submit</button>
+    <button onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
 <script>
   Parse.initialize("qy8z2SCM8r09qpMunKUCIx4I4OsGMII53b9buurv", "7qOd9JbeR2M6zXoW9qM5gDMj1o5Heam4Ul2fEp2T");
   Parse.serverURL = "https://parseapi.back4app.com/";
@@ -335,13 +346,25 @@ body {
   }
 
   async function updateStatus(id, status) {
-    const Question = Parse.Object.extend("Questions");
-    const query = new Parse.Query(Question);
-    const q = await query.get(id);
+  const Question = Parse.Object.extend("Questions");
+  const query = new Parse.Query(Question);
+  const q = await query.get(id);
+
+  if (status === "rejected") {
+    openModal("Enter correct answer:", async (correctAnswer) => {
+      q.set("status", "rejected");
+      q.set("correctAnswer", correctAnswer); // Store correct answer
+      await q.save();
+      showAnswerSheet();
+      showCustomAlert("Status: Rejected & Correct Answer Saved");
+    });
+  } else {
     q.set("status", status);
     await q.save();
     showAnswerSheet();
+    showCustomAlert("Status: Approved");
   }
+}
   
   function showCustomAlert(message) {
   const box = document.getElementById("customAlert");
