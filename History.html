@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sofa Ready Orders</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f2f9f9;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .order {
+      background: white;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 15px auto;
+      position: relative;
+    }
+    .order img {
+      margin-top: 10px;
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    .upload-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #50284c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .upload-btn:disabled {
+      background-color: #888;
+      cursor: not-allowed;
+    }
+    .upload-btn:hover:enabled {
+      background-color: #3a1e39;
+    }
+
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #50284c;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      animation: spin 1s linear infinite;
+      display: none;
+      margin-top: 10px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Sofa Ready Orders</h1>
+  <div id="readyOrdersContainer"></div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDHUdTcM7oHWcThvxBzoVCTmkY6N6ogHCI",
+      authDomain: "pioneer-database.firebaseapp.com",
+      databaseURL: "https://pioneer-database-default-rtdb.firebaseio.com",
+      projectId: "pioneer-database",
+      storageBucket: "pioneer-database.appspot.com",
+      messagingSenderId: "1095575708432",
+      appId: "1:1095575708432:web:b66d84298bae6a0595fb95"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const storage = firebase.storage();
+    const container = document.getElementById('readyOrdersContainer');
+
+    database.ref('orders').on('value', snapshot => {
+      container.innerHTML = '';
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        Object.keys(data).reverse().forEach(key => {
+          const order = data[key];
+          if (order.status !== 'Sofa Ready') return;
+
+          const div = document.createElement('div');
+          div.className = 'order';
+
+          const imageEl = document.createElement('img');
+          if (order.uploadedImageUrl) {
+            imageEl.src = order.uploadedImageUrl;
+          }
+
+          const fileInput = document.createElement('input');
+          fileInput.type = 'file';
+          fileInput.accept = 'image/*';
+
+          const loader = document.createElement('div');
+          loader.className = 'loader';
+
+          const uploadBtn = document.createElement('button');
+          uploadBtn.className = 'upload-btn';
+          uploadBtn.textContent = 'Upload Image';
+
+          uploadBtn.onclick = () => {
+            const file = fileInput.files[0];
+            if (!file) {
+              alert('Please select an image first.');
+              return;
+            }
+
+            uploadBtn.disabled = true;
+            loader.style.display = 'inline-block';
+
+            const storageRef = storage.ref(`uploadedImages/${key}_${file.name}`);
+            storageRef.put(file).then(snapshot => {
+              return snapshot.ref.getDownloadURL();
+            }).then(url => {
+              database.ref(`orders/${key}`).update({
+                uploadedImageUrl: url
+              });
+              imageEl.src = url;
+              alert('Image uploaded successfully!');
+            }).catch(error => {
+              console.error(error);
+              alert('Image upload failed.');
+            }).finally(() => {
+              uploadBtn.disabled = false;
+              loader.style.display = 'none';
+            });
+          };
+
+          div.innerHTML = `
+            <p><strong>Bill Number:</strong> ${order.billNumber || 'N/A'}</p>
+            <p><strong>Seat:</strong> ${order.sheet || 'N/A'}</p>
+            <p><strong>Ready Date:</strong> ${order.readyDate ? new Date(order.readyDate).toLocaleString() : 'N/A'}</p>
+          `;
+
+          div.appendChild(fileInput);
+          div.appendChild(uploadBtn);
+          div.appendChild(loader);
+          div.appendChild(imageEl);
+          container.appendChild(div);
+        });
+      } else {
+        container.innerHTML = '<p>No Sofa Ready orders found.</p>';
+      }
+    });
+  </script>
+</body>
+</html>
